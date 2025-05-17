@@ -8,122 +8,137 @@ class LoginScreenview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff14141d),
-
       resizeToAvoidBottomInset: true,
-
-      body: SingleChildScrollView( // <-- Wrap everything here
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/img.png'),
+            fit: BoxFit.fill,
+          ),
+        ),
         child: Container(
-          padding: EdgeInsets.only(left: 5,right: 5), // Give some bottom padding
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  child: Image.asset('assets/images/login.png')),
+          color: Colors.black.withOpacity(0.6),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+            child: Form(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(height:173),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  // Email Field
+
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white),
                     ),
-                    SizedBox(height: 10),
-                    TextField(
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 3, color: Colors.white),
-                        ),
                         hintText: "Enter Email",
-                        hintStyle: TextStyle(color: Colors.white70, fontSize: 20),
-                        prefixIcon: Icon(Icons.email, color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.black),
+                        prefixIcon: Icon(Icons.email, color: Colors.black),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       ),
                     ),
-                    SizedBox(height: 30),
-                    TextField(
-                      obscureText: true, // Optional: hide password
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+
+                  SizedBox(height: 30),
+
+                  // Password Field
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white54),
+                    ),
+                    child: TextFormField(
+                      obscureText: true,
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(width: 3, color: Colors.white),
-                        ),
-                        hintText: 'Enter Password',
-                        hintStyle: TextStyle(color: Colors.white, fontSize: 20),
-                        prefixIcon: Icon(Icons.password, color: Colors.white),
+                        hintText: "Enter Password",
+                        hintStyle: TextStyle(color: Colors.black),
+                        prefixIcon: Icon(Icons.lock, color: Colors.black),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       ),
                     ),
-                    SizedBox(height: 30),
-                    Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(12),
+                  ),
+
+                  SizedBox(height: 30),
+
+                  // Login Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DashboardScreenview()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white.withOpacity(0.4),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                      child: ElevatedButton(
+                      child: Text(
+                        'Login',
+                        style: TextStyle(fontSize: 24, color: Colors.black),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 25),
+
+                  // Sign Up Row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't Have An Account?",
+                        style: TextStyle(color: Colors.white70,
+                        fontSize: 15),
+                      ),
+                      TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreenview()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignupScreenview()),
+                          );
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          shadowColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Login',
-                            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600),
-                          ),
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold,fontSize: 20),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 50),
-                    Row(
-                      children: [
-                        Text(
-                          "Don't Have An Account?",
-                          style: TextStyle(color: Colors.white70, fontSize: 15),
-                        ),
-                        SizedBox(width: 10),
-                        Container(
-                          height: 50,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.blue,
-                          ),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreenview()));
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'SignUp',
-                                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+
+
+

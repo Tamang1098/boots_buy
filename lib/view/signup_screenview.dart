@@ -7,21 +7,21 @@ class SignupScreenview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xff14141d),
+      backgroundColor: Color(0xFF0F172A),
       resizeToAvoidBottomInset: true, // This enables resize on keyboard open
 
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.only(bottom: 30), // Add padding to avoid cutoff
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(height: 290, child: Image.asset('assets/images/login.png')),
 
+              Container(height: 290, child: Image.asset('assets/images/lo.png')),
+              SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'SignUp',
@@ -31,7 +31,7 @@ class SignupScreenview extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 50),
 
                     TextField(
                       style: TextStyle(color: Colors.white, fontSize: 15),
