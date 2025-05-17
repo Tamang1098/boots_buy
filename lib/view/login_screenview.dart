@@ -8,39 +8,13 @@ class LoginScreenview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,),
       backgroundColor: Color(0xff14141d),
 
       resizeToAvoidBottomInset: true, // Allows resizing when keyboard appears
 
       body: SingleChildScrollView( // <-- Wrap everything here
         child: Container(
-          padding: EdgeInsets.only(left: 5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              ,right: 5), // Give some bottom padding
+          padding: EdgeInsets.only(left: 5,right: 5), // Give some bottom padding
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

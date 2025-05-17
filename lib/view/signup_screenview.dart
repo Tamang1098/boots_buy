@@ -7,7 +7,6 @@ class SignupScreenview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0),
       backgroundColor:Color(0xff14141d),
       resizeToAvoidBottomInset: true, // This enables resize on keyboard open
 
