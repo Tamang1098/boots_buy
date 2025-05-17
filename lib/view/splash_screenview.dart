@@ -14,23 +14,39 @@ class _SplashScreenviewState extends State<SplashScreenview> {
 
   @override
   void initState() {
-  Timer(Duration(seconds: 2),(){
-   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreenview(),));
-  });
     super.initState();
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreenview()),
+      );
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/splash_screen.png'),
-            fit: BoxFit.fill,
+      body: Stack(
+        children: [
+          // Background Image
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/splash_screen.png'),
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
-        ),
+          // Loading Indicator
+           const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 6.0,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
