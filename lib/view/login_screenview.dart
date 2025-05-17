@@ -10,7 +10,7 @@ class LoginScreenview extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff14141d),
 
-      resizeToAvoidBottomInset: true, // Allows resizing when keyboard appears
+      resizeToAvoidBottomInset: true,
 
       body: SingleChildScrollView( // <-- Wrap everything here
         child: Container(
