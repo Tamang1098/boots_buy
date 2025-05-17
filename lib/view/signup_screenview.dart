@@ -37,16 +37,16 @@ class SignupScreenview extends StatelessWidget {
                 // Email Field
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black87,
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.white54),
                   ),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: "Enter Email",
-                      hintStyle: TextStyle(color: Colors.white70),
-                      prefixIcon: Icon(Icons.email, color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.black),
+                      prefixIcon: Icon(Icons.email, color: Colors.black),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
@@ -57,17 +57,17 @@ class SignupScreenview extends StatelessWidget {
                 // Password Field
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black87,
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.white54),
                   ),
                   child: TextFormField(
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: "Enter Password",
-                      hintStyle: TextStyle(color: Colors.white70),
-                      prefixIcon: Icon(Icons.lock, color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.black),
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
@@ -78,17 +78,17 @@ class SignupScreenview extends StatelessWidget {
                 // Confirm Password Field
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black87,
+                    color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.white54),
                   ),
                   child: TextFormField(
                     obscureText: true,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: "Confirm Password",
-                      hintStyle: TextStyle(color: Colors.white70),
-                      prefixIcon: Icon(Icons.lock, color: Colors.white),
+                      hintStyle: TextStyle(color: Colors.black),
+                      prefixIcon: Icon(Icons.lock, color: Colors.black),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
@@ -103,14 +103,14 @@ class SignupScreenview extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.white.withOpacity(0.4),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: Text(
                       'SignUp',
-                      style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
