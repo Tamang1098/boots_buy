@@ -80,7 +80,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                   Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.black,
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                     ),
@@ -130,7 +130,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                     ),
                   ),
 
-                  SizedBox(height: 30),
+                  SizedBox(height: 15),
 
                   /// Login Button
                   SizedBox(
@@ -159,7 +159,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                     children: [
                       Text(
                         "Don't Have An Account?",
-                        style: TextStyle(color: Colors.white70, fontSize: 15),
+                        style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
                       TextButton(
                         onPressed: () {
