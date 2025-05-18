@@ -1,4 +1,3 @@
-
 import 'package:boots_buy/view/splash_screenview.dart';
 import 'package:flutter/material.dart';
 

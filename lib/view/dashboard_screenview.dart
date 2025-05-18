@@ -9,7 +9,11 @@ class DashboardScreenview extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
       ),
-
+      body: Center(
+        child: Container(
+          child: Text("Welcome To Dashboard"),
+        ),
+      ),
     );
   }
 }

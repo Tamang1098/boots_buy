@@ -2,13 +2,65 @@ import 'package:boots_buy/view/dashboard_screenview.dart';
 import 'package:boots_buy/view/signup_screenview.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreenview extends StatelessWidget {
+class LoginScreenview extends StatefulWidget {
   const LoginScreenview({super.key});
+
+  @override
+  State<LoginScreenview> createState() => _LoginScreenviewState();
+}
+
+class _LoginScreenviewState extends State<LoginScreenview> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _login() {
+    final username = _usernameController.text.trim();
+    final password = _passwordController.text;
+
+    if (username.isEmpty || password.isEmpty) {
+      _showAlertDialog(
+        title: "Missing Fields",
+        content: "Please enter both the username and password to login.",
+      );
+      return;
+    }
+
+    if (password.length < 6) {
+      _showAlertDialog(
+        title: "Weak Password",
+        content: "Password must be at least 6 characters long.",
+      );
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardScreenview()),
+    );
+  }
+
+  void _showAlertDialog({required String title, required String content}) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -19,7 +71,6 @@ class LoginScreenview extends StatelessWidget {
           ),
         ),
         child: Container(
-          color: Colors.black.withOpacity(0.6),
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
             child: Form(
@@ -34,10 +85,9 @@ class LoginScreenview extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height:173),
+                  SizedBox(height: 175),
 
-                  // Email Field
-
+                  /// Username Field
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.4),
@@ -45,11 +95,12 @@ class LoginScreenview extends StatelessWidget {
                       border: Border.all(color: Colors.white),
                     ),
                     child: TextFormField(
+                      controller: _usernameController,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintText: "Enter Email",
+                        hintText: "Enter UserName",
                         hintStyle: TextStyle(color: Colors.black),
-                        prefixIcon: Icon(Icons.email, color: Colors.black),
+                        prefixIcon: Icon(Icons.person, color: Colors.black),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       ),
@@ -58,7 +109,7 @@ class LoginScreenview extends StatelessWidget {
 
                   SizedBox(height: 30),
 
-                  // Password Field
+                  /// Password Field
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.4),
@@ -66,6 +117,7 @@ class LoginScreenview extends StatelessWidget {
                       border: Border.all(color: Colors.white54),
                     ),
                     child: TextFormField(
+                      controller: _passwordController,
                       obscureText: true,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
@@ -80,19 +132,14 @@ class LoginScreenview extends StatelessWidget {
 
                   SizedBox(height: 30),
 
-                  // Login Button
+                  /// Login Button
                   SizedBox(
                     width: double.infinity,
                     height: 60,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => DashboardScreenview()),
-                        );
-                      },
+                      onPressed: _login,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.4),
+                        backgroundColor: Colors.white.withOpacity(0.6),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -106,14 +153,13 @@ class LoginScreenview extends StatelessWidget {
 
                   SizedBox(height: 25),
 
-                  // Sign Up Row
+                  /// Sign Up
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Don't Have An Account?",
-                        style: TextStyle(color: Colors.white70,
-                        fontSize: 15),
+                        style: TextStyle(color: Colors.white70, fontSize: 15),
                       ),
                       TextButton(
                         onPressed: () {
@@ -124,7 +170,11 @@ class LoginScreenview extends StatelessWidget {
                         },
                         child: Text(
                           "Sign Up",
-                          style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold,fontSize: 20),
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ],
@@ -138,7 +188,3 @@ class LoginScreenview extends StatelessWidget {
     );
   }
 }
-
-
-
-
