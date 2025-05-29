@@ -1,4 +1,4 @@
-import 'package:boots_buy/view/dashboard_screenview.dart';
+import 'package:boots_buy/bottom_screen/dashboard_screenview.dart';
 import 'package:boots_buy/view/signup_screenview.dart';
 import 'package:flutter/material.dart';
 

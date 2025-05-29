@@ -87,6 +87,7 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                     color: Colors.black,
                     fontSize: 30,
                     fontWeight: FontWeight.w500,
+                    fontFamily: 'Opensans Bold',
                   ),
                 ),
                 SizedBox(height: 60),
