@@ -46,7 +46,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
         title: Text(title),
         content: Text(content),
         actions: [
-          TextButton(
+          ElevatedButton(
             child: Text("OK"),
             onPressed: () {
               Navigator.of(ctx).pop();
@@ -82,7 +82,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 30,
-                      fontWeight: FontWeight.w700,
+
                     ),
                   ),
                   SizedBox(height: 175),
@@ -92,7 +92,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.white),
+
                     ),
                     child: TextFormField(
                       controller: _usernameController,
@@ -101,7 +101,9 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                         hintText: "Enter UserName",
                         hintStyle: TextStyle(color: Colors.black),
                         prefixIcon: Icon(Icons.person, color: Colors.black),
-                        border: InputBorder.none,
+                       border: OutlineInputBorder(
+                         borderRadius: BorderRadius.circular(10.0),
+                       ),
                         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       ),
                     ),
@@ -124,7 +126,10 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                         hintText: "Enter Password",
                         hintStyle: TextStyle(color: Colors.black),
                         prefixIcon: Icon(Icons.lock, color: Colors.black),
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+
+                        ),
                         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       ),
                     ),
@@ -135,33 +140,32 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                   /// Login Button
                   SizedBox(
                     width: double.infinity,
-                    height: 60,
-                    child: ElevatedButton(
+                    height: 60,  ),
+                    ElevatedButton(
                       onPressed: _login,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.6),
+                        minimumSize: Size(200, 60), // width,height
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Text(
                         'Login',
-                        style: TextStyle(fontSize: 24, color: Colors.black),
                       ),
                     ),
-                  ),
+
 
                   SizedBox(height: 25),
 
                   /// Sign Up
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         "Don't Have An Account?",
                         style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
-                      TextButton(
+                      ElevatedButton(
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -170,11 +174,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                         },
                         child: Text(
                           "Sign Up",
-                          style: TextStyle(
-                            color: Colors.blueAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+
                         ),
                       ),
                     ],

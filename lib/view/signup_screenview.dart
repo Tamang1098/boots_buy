@@ -84,10 +84,10 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                 Text(
                   'SignUp',
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 30,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Opensans Bold',
+
+
+
                   ),
                 ),
                 SizedBox(height: 60),
@@ -101,12 +101,13 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                   ),
                   child: TextFormField(
                     controller: _usernameController,
-                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: "Enter UserName",
                       hintStyle: TextStyle(color: Colors.black),
                       prefixIcon: Icon(Icons.person, color: Colors.black),
-                      border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
                   ),
@@ -127,7 +128,9 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                       hintText: "Enter Email",
                       hintStyle: TextStyle(color: Colors.black),
                       prefixIcon: Icon(Icons.email, color: Colors.black),
-                      border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
                   ),
@@ -149,7 +152,9 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                       hintText: "Enter Password",
                       hintStyle: TextStyle(color: Colors.black),
                       prefixIcon: Icon(Icons.lock, color: Colors.black),
-                      border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                      ),
                       contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     ),
                   ),
@@ -158,37 +163,38 @@ class _SignupScreenviewState extends State<SignupScreenview> {
 
                 /// Signup Button
                 SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
+                  height: 10, ),
+                  ElevatedButton(
                     onPressed: _register,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white.withOpacity(0.6),
+                      minimumSize: Size(200, 60), // width,height
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                     child: Text(
                       'SignUp',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                      ),
+
                     ),
                   ),
-                ),
+
                 SizedBox(height: 20),
 
                 /// Already have account
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       "Already Have An Account?",
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
-                    TextButton(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(100, 40), // width,height
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -197,11 +203,7 @@ class _SignupScreenviewState extends State<SignupScreenview> {
                       },
                       child: Text(
                         'Login',
-                        style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+
                       ),
                     ),
                   ],
