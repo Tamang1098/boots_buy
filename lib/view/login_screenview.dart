@@ -140,7 +140,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                   /// Login Button
                   SizedBox(
                     width: double.infinity,
-                    height: 60,  ),
+                    height: 10,  ),
                     ElevatedButton(
                       onPressed: _login,
                       style: ElevatedButton.styleFrom(
@@ -155,7 +155,7 @@ class _LoginScreenviewState extends State<LoginScreenview> {
                     ),
 
 
-                  SizedBox(height: 25),
+                  SizedBox(height: 15),
 
                   /// Sign Up
                   Row(
