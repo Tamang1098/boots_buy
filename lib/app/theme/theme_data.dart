@@ -10,8 +10,6 @@ ThemeData getApplicationTheme(){
       style: ElevatedButton.styleFrom(
         textStyle: const TextStyle(
             fontSize: 20,
-
-
             color: Colors.white,
             fontWeight: FontWeight.w500,
             fontFamily: 'Opensans Regular'),
