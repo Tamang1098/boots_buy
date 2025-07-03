@@ -123,7 +123,7 @@ final serviceLocator = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
   await _initHiveService();
-  await _initApiService(); // ✅ fix: add this line
+  await _initApiService();
   await _initSplashModule();
   await _initAuthModule();
   await _initHomeModule();

@@ -1,7 +1,24 @@
+import 'package:boots_buy/features/auth/domain/use_case/user_login_usecase.dart';
+import 'package:boots_buy/features/auth/presentation/view/View/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_viewmodel.dart';
+import 'package:boots_buy/app/service_locator/service_locator.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  void _logout(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlocProvider<LoginViewModel>(
+          create: (_) => serviceLocator<LoginViewModel>(),
+          child: LoginScreen(),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +26,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Boots Buy'),
         centerTitle: true,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => _logout(context),
           ),
         ],
       ),
@@ -75,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 250,
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 12,
@@ -154,11 +172,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
