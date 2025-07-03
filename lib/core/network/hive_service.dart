@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 class HiveService {
   Future<void> init() async {
     var directory = await getApplicationDocumentsDirectory();
-    var path = '${directory.path}/boots_buy_backened';
+    var path = '${directory.path}/boots_buy';
     Hive.init(path);
 
     Hive.registerAdapter(UserHiveModelAdapter());

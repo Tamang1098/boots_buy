@@ -22,13 +22,14 @@ class UserHiveModelAdapter extends TypeAdapter<UserHiveModel> {
       username: fields[2] as String,
       password: fields[3] as String,
       profilePhoto: fields[4] as String?,
+      role: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserHiveModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class UserHiveModelAdapter extends TypeAdapter<UserHiveModel> {
       ..writeByte(3)
       ..write(obj.password)
       ..writeByte(4)
-      ..write(obj.profilePhoto);
+      ..write(obj.profilePhoto)
+      ..writeByte(5)
+      ..write(obj.role);
   }
 
   @override

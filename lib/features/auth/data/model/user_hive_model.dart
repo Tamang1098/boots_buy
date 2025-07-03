@@ -24,12 +24,16 @@ class UserHiveModel extends Equatable {
   @HiveField(4)
   final String? profilePhoto;
 
+  @HiveField(5)
+  final String role;
+
   UserHiveModel({
     String? userId,
     required this.email,
     required this.username,
     required this.password,
     this.profilePhoto,
+    this.role = 'normal',
   }) : userId = userId ?? const Uuid().v4(); // Generate UUID if null
 
   const UserHiveModel.initial()
@@ -37,20 +41,22 @@ class UserHiveModel extends Equatable {
         email = '',
         username = '',
         password = '',
-        profilePhoto = '';
+        profilePhoto = '',
+        role = 'normal';
 
   /// From Domain Entity to Hive Model
   factory UserHiveModel.fromEntity(UserEntity entity) {
     return UserHiveModel(
-      userId: entity.userId ?? const Uuid().v4(), // fallback
+      userId: entity.userId, // fallback
       email: entity.email,
       username: entity.username,
       password: entity.password,
       profilePhoto: entity.profilePhoto,
+      role: entity.role,
     );
   }
 
-  /// To Domain Entity
+  /// To  Entity
   UserEntity toEntity() {
     return UserEntity(
       userId: userId,
@@ -58,17 +64,22 @@ class UserHiveModel extends Equatable {
       username: username,
       password: password,
       profilePhoto: profilePhoto,
+      role: role,
     );
   }
 
+
+  // Convert List of HiveModels to List of Entities
   static List<UserEntity> toEntityList(List<UserHiveModel> hiveList) {
     return hiveList.map((data) => data.toEntity()).toList();
   }
 
+
+  // Convert List of Entities to List of HiveModels
   static List<UserHiveModel> fromEntityList(List<UserEntity> entityList) {
     return entityList.map((data) => UserHiveModel.fromEntity(data)).toList();
   }
 
   @override
-  List<Object?> get props => [userId, email, username, password, profilePhoto];
+  List<Object?> get props => [userId, email, username, password, profilePhoto, role];
 }

@@ -3,7 +3,6 @@ import 'package:boots_buy/core/error/failure.dart';
 import 'package:boots_buy/features/auth/domain/repository/user_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-// import 'package:softconnect/core/usecase/usecase.dart';
 
 
 class UserLoginParams extends Equatable {

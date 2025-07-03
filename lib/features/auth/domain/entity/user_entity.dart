@@ -6,6 +6,7 @@ class UserEntity extends Equatable {
   final String username;
   final String password;
   final String? profilePhoto;
+  final String role;
 
   const UserEntity({
     this.userId,
@@ -13,6 +14,7 @@ class UserEntity extends Equatable {
     required this.username,
     required this.password,
     this.profilePhoto,
+    this.role = 'normal',
   });
 
   @override
@@ -22,5 +24,6 @@ class UserEntity extends Equatable {
     username,
     password,
     profilePhoto,
+    role,
   ];
 }

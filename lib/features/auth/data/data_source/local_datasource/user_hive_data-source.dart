@@ -40,10 +40,10 @@ class UserHiveDataSource implements IUserDataSource {
   }
 
   @override
-  Future<UserEntity> getCurrentUser() async {
+  Future<UserEntity> getCurrentUser(String id) async {
     final users = await _hiveService.getAllUsers();
     if (users.isNotEmpty) {
-      return users.first.toEntity(); // You might update logic later
+      return users.first.toEntity();
     } else {
       throw Exception("No user found in Hive.");
     }
