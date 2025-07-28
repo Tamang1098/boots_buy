@@ -22,3 +22,9 @@ class RemoteDatabaseFailure extends Failure {
 class SharedPreferencesFailure extends Failure {
   const SharedPreferencesFailure({required super.message});
 }
+
+class ServerFailure extends Failure {
+  final int? statusCode;
+
+  const ServerFailure({this.statusCode, required super.message});
+}

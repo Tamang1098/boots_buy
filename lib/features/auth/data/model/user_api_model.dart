@@ -13,14 +13,18 @@ class UserApiModel extends Equatable {
   final String username;
 
   final String password;
+  final String address;
+  final String mobilenumber;
   final String? profilePhoto;
   final String role;
 
-  UserApiModel(
+  const UserApiModel(
       { this.userId,
         required this.email,
         required this.username,
         required this.password,
+        required this.address,
+        required this.mobilenumber,
         this.profilePhoto,
         required this.role});
 
@@ -37,8 +41,10 @@ class UserApiModel extends Equatable {
       email: email,
       username: username,
       password: password,
+      address: address,
+      mobilenumber: mobilenumber,
       profilePhoto: profilePhoto ?? '',
-      role: role ?? 'normal',
+      role: role,
     );
   }
 
@@ -49,6 +55,8 @@ class UserApiModel extends Equatable {
       email: entity.email,
       username: entity.username,
       password: entity.password,
+      address: entity.address,
+      mobilenumber: entity.mobilenumber,
       profilePhoto: entity.profilePhoto,
       role: entity.role,
     );
@@ -60,6 +68,8 @@ class UserApiModel extends Equatable {
     email,
     username,
     password,
+    address,
+    mobilenumber,
     profilePhoto,
     role,
   ];

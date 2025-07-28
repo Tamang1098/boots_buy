@@ -13,6 +13,8 @@ class SignupButtonPressed extends SignupEvent {
   final String username;
   // final int studentId;
   final String password;
+  final String address;
+  final String mobilenumber;
   // final String role;
   final BuildContext context; // pass context for snackbar
 
@@ -21,10 +23,12 @@ class SignupButtonPressed extends SignupEvent {
     required this.username,
     // required this.studentId,
     required this.password,
+    required this.address,
+    required this.mobilenumber,
     // required this.role,
     required this.context,
   });
 
   @override
-  List<Object?> get props => [email, username,  password, context];
+  List<Object?> get props => [email, username,  password, address, mobilenumber,context];
 }

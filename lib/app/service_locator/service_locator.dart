@@ -104,10 +104,10 @@
 
 import 'package:boots_buy/core/network/api_service.dart';
 import 'package:boots_buy/core/network/hive_service.dart';
+import 'package:boots_buy/core/utils/mysnackbar.dart';
 import 'package:boots_buy/features/auth/data/data_source/local_datasource/user_hive_data-source.dart';
 import 'package:boots_buy/features/auth/data/data_source/remote_datasource/user_remote_data_source.dart';
 import 'package:boots_buy/features/auth/data/data_source/user_data_source.dart';
-import 'package:boots_buy/features/auth/data/repository/local_repository/user_local_repository.dart';
 import 'package:boots_buy/features/auth/data/repository/remote_repository/user_remote_repository.dart' show UserRemoteRepository;
 import 'package:boots_buy/features/auth/domain/repository/user_repository.dart';
 import 'package:boots_buy/features/auth/domain/use_case/user_login_usecase.dart';
@@ -181,7 +181,8 @@ Future<void> _initAuthModule() async {
 
   serviceLocator.registerFactory<SignupViewModel>(
         () => SignupViewModel(
-      userRegisterUsecase: serviceLocator<UserRegisterUsecase>(),
+      userRegisterUsecase: serviceLocator<UserRegisterUsecase>(), 
+      showSnackBar: showMySnackBar,
     ),
   );
 }

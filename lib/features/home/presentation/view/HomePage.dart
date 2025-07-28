@@ -1,7 +1,6 @@
-import 'package:boots_buy/features/auth/presentation/view/View/login.dart';
 import 'package:flutter/material.dart';
 import 'package:boots_buy/features/home/presentation/view/cart_screen.dart';
-import 'package:boots_buy/features/home/presentation/view/profile_screen.dart';
+import 'package:boots_buy/features/home/presentation/view/order_screen.dart';
 import 'about_screen.dart';
 import 'home_screen.dart';
 
@@ -18,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = const [
     HomeScreen(),
     CartScreen(),
-    ProfileScreen(),
+    OrderScreen(),
     AboutScreen(),
   ];
 
@@ -35,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return 'Cart';
       case 2:
-        return 'Profile';
+        return 'Order';
       case 3:
         return 'About';
       default:
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart), label: 'Order'),
           BottomNavigationBarItem(icon: Icon(Icons.info_outline), label: 'About'),
         ],
       ),

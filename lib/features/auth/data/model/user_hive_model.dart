@@ -22,9 +22,15 @@ class UserHiveModel extends Equatable {
   final String password;
 
   @HiveField(4)
-  final String? profilePhoto;
+  final String address;
 
   @HiveField(5)
+  final String mobilenumber;
+
+  @HiveField(6)
+  final String? profilePhoto;
+
+  @HiveField(7)
   final String role;
 
   UserHiveModel({
@@ -32,6 +38,8 @@ class UserHiveModel extends Equatable {
     required this.email,
     required this.username,
     required this.password,
+    required this.address,
+    required this.mobilenumber,
     this.profilePhoto,
     this.role = 'normal',
   }) : userId = userId ?? const Uuid().v4(); // Generate UUID if null
@@ -41,6 +49,8 @@ class UserHiveModel extends Equatable {
         email = '',
         username = '',
         password = '',
+        address = '',
+        mobilenumber = '',
         profilePhoto = '',
         role = 'normal';
 
@@ -51,6 +61,8 @@ class UserHiveModel extends Equatable {
       email: entity.email,
       username: entity.username,
       password: entity.password,
+      address: entity.address,
+      mobilenumber: entity.mobilenumber,
       profilePhoto: entity.profilePhoto,
       role: entity.role,
     );
@@ -63,6 +75,8 @@ class UserHiveModel extends Equatable {
       email: email,
       username: username,
       password: password,
+      address: address,
+      mobilenumber: mobilenumber,
       profilePhoto: profilePhoto,
       role: role,
     );
