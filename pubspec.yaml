@@ -61,6 +61,7 @@ dependencies:
   intl: ^0.18.1
   provider: ^6.1.5
   proximity_sensor: ^1.0.3
+  jwt_decode: ^0.3.1
 
 
 

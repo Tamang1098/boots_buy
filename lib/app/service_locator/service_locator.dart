@@ -117,6 +117,19 @@ import 'package:boots_buy/features/auth/presentation/view_model/signup_viewmodel
 import 'package:boots_buy/features/cart/presentation/view_model/cart_view_model.dart';
 import 'package:boots_buy/features/home/presentation/view_model/homepage_viewmodel.dart';
 import 'package:boots_buy/features/splash/presentation/view_model/splash_viewmodel.dart';
+import 'package:boots_buy/features/order/data/data_source/order_datasource.dart';
+import 'package:boots_buy/features/order/data/data_source/remote_datasource/user_remote_datasource.dart';
+import 'package:boots_buy/features/order/data/repository/remote_repository/order_remote_repository.dart';
+import 'package:boots_buy/features/order/domain/repository/order_repository.dart';
+import 'package:boots_buy/features/order/domain/use_case/create_order_usecase.dart';
+import 'package:boots_buy/features/order/domain/use_case/get_order_usecase.dart';
+import 'package:boots_buy/features/order/presentation/view_model/order_view_model.dart';
+import 'package:boots_buy/features/product/data/data_source/product_remote_data_source.dart';
+import 'package:boots_buy/features/product/data/repository/remote_repository/product_remote_repository.dart';
+import 'package:boots_buy/features/product/domain/repository/product_repository.dart';
+import 'package:boots_buy/features/product/domain/use_case/product_fetch_usecase.dart';
+import 'package:boots_buy/features/product/presentation/view_model/product_view_model.dart';
+import 'package:boots_buy/features/cart/presentation/view_model/cart_view_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -212,6 +225,30 @@ Future<void> _initCartModule() async {
   // e.g. serviceLocator.registerFactory<CartRepository>(() => CartRepositoryImpl());
   // Then inject those into CartViewModel's constructor
 }
+print("Registering OrderRepository");
+  serviceLocator.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(serviceLocator<OrderRemoteDataSource>()),
+  );
+
+  // use case
+  print("Registering CreateOrderUseCase");
+  serviceLocator.registerFactory<CreateOrderUseCase>(
+    () => CreateOrderUseCase(serviceLocator<OrderRepository>()),
+  );
+
+  serviceLocator.registerFactory<GetUserOrdersUseCase>(
+    () => GetUserOrdersUseCase(serviceLocator<OrderRepository>()),
+  );
+
+  //bloc
+
+  print("Registering OrderViewModel");
+  serviceLocator.registerFactory<OrderViewModel>(
+    () => OrderViewModel(
+      createOrderUseCase: serviceLocator<CreateOrderUseCase>(),
+      getUserOrdersUseCase: serviceLocator<GetUserOrdersUseCase>(),
+    ),
+  );
 
 
 
