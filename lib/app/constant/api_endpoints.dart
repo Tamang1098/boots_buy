@@ -22,4 +22,5 @@ class ApiEndpoints {
   static const String adminbrand = "admin/brand";
   static const String adminproduct = "admin/product";
   static const String order = "order";
+  static const String getUserOrders = "orders";
 }

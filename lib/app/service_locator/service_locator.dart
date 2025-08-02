@@ -114,6 +114,7 @@ import 'package:boots_buy/features/auth/domain/use_case/user_login_usecase.dart'
 import 'package:boots_buy/features/auth/domain/use_case/user_register_usecase.dart';
 import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_viewmodel.dart';
 import 'package:boots_buy/features/auth/presentation/view_model/signup_viewmodel/signup_viewmodel.dart';
+import 'package:boots_buy/features/cart/presentation/view_model/cart_view_model.dart';
 import 'package:boots_buy/features/home/presentation/view_model/homepage_viewmodel.dart';
 import 'package:boots_buy/features/splash/presentation/view_model/splash_viewmodel.dart';
 import 'package:dio/dio.dart';
@@ -127,6 +128,10 @@ Future<void> setupServiceLocator() async {
   await _initSplashModule();
   await _initAuthModule();
   await _initHomeModule();
+  await _initProductModule();
+  await _initThemeModule();
+  await _initCartModule();
+
 }
 
 Future<void> _initHiveService() async {
@@ -198,5 +203,16 @@ Future<void> _initHomeModule() async {
         () => HomeViewModel(),
   );
 }
+
+Future<void> _initCartModule() async {
+  // Register CartViewModel (Bloc)
+  serviceLocator.registerFactory<CartViewModel>(() => CartViewModel());
+
+  // If you have Cart-related use cases or repositories, register them here as well
+  // e.g. serviceLocator.registerFactory<CartRepository>(() => CartRepositoryImpl());
+  // Then inject those into CartViewModel's constructor
+}
+
+
 
 
