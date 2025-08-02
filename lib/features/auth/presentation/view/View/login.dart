@@ -1,233 +1,71 @@
-// import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_event.dart';
-// import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_state.dart';
-// import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_viewmodel.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-//
-// class LoginScreen extends StatelessWidget {
-//   final _formKey = GlobalKey<FormState>();
-//   final TextEditingController  emailController = TextEditingController();
-//   final TextEditingController passwordController = TextEditingController();
-//
-//   LoginScreen({super.key});
-//
-//   void _showSnackBar(BuildContext context, String message, {bool isError = false}) {
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(
-//         content: Text(message),
-//         backgroundColor: isError ? Colors.red : Colors.green,
-//       ),
-//     );
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       resizeToAvoidBottomInset: false,
-//       body: BlocBuilder<LoginViewModel, LoginState>(
-//         builder: (context, state) {
-//           WidgetsBinding.instance.addPostFrameCallback((_) {
-//             if (state.isSuccess) {
-//               _showSnackBar(context, "Login Successful");
-//             }
-//             if (state.errorMessage != null) {
-//               _showSnackBar(context, state.errorMessage!, isError: true);
-//             }
-//           });
-//
-//           return Container(
-//             width: double.infinity,
-//             height: double.infinity,
-//             decoration: BoxDecoration(
-//               image: DecorationImage(
-//                 image: AssetImage('assets/images/img.png'),
-//                 fit: BoxFit.fill,
-//               ),
-//             ),
-//             child: SingleChildScrollView(
-//               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
-//               child: Form(
-//                 key: _formKey,
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.center,
-//                   children: [
-//                     Text(
-//                       'Login',
-//                       style: TextStyle(
-//                         color: Colors.black,
-//                         fontSize: 30,
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
-//                     SizedBox(height: 175),
-//
-//                     /// Email Field
-//                     Container(
-//                       decoration: BoxDecoration(
-//                         color: Colors.white.withOpacity(0.4),
-//                         borderRadius: BorderRadius.circular(10),
-//                       ),
-//                       child: TextFormField(
-//                         controller: emailController,
-//                         style: TextStyle(color: Colors.black),
-//                         decoration: InputDecoration(
-//                           hintText: "Enter Email",
-//                           hintStyle: TextStyle(color: Colors.black),
-//                           prefixIcon: Icon(Icons.email, color: Colors.black),
-//                           border: OutlineInputBorder(
-//                             borderRadius: BorderRadius.circular(10.0),
-//                           ),
-//                           contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-//                         ),
-//                         validator: (val) => val == null || val.isEmpty ? 'Enter Email' : null,
-//                       ),
-//                     ),
-//
-//                     SizedBox(height: 30),
-//
-//                     /// Password Field
-//                     Container(
-//                       decoration: BoxDecoration(
-//                         color: Colors.white.withOpacity(0.4),
-//                         borderRadius: BorderRadius.circular(10),
-//                       ),
-//                       child: TextFormField(
-//                         controller: passwordController,
-//                         obscureText: true,
-//                         style: TextStyle(color: Colors.black),
-//                         decoration: InputDecoration(
-//                           hintText: "Enter Password",
-//                           hintStyle: TextStyle(color: Colors.black),
-//                           prefixIcon: Icon(Icons.lock, color: Colors.black),
-//                           border: OutlineInputBorder(
-//                             borderRadius: BorderRadius.circular(10.0),
-//                           ),
-//                           contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-//                         ),
-//                         validator: (val) => val == null || val.isEmpty ? 'Enter Password' : null,
-//                       ),
-//                     ),
-//
-//                     SizedBox(height: 30),
-//
-//                     /// Login Button
-//                     SizedBox(
-//                       width: double.infinity,
-//                       height: 50,
-//                       child: ElevatedButton(
-//                         onPressed: state.isLoading
-//                             ? null
-//                             : () {
-//                           if (_formKey.currentState!.validate()) {
-//                             context.read<LoginViewModel>().add(
-//                               LoginUserEvent(
-//                                 email: emailController.text.trim(),
-//                                 password: passwordController.text,
-//                                 context: context,
-//                               ),
-//                             );
-//                           }
-//                         },
-//                         style: ElevatedButton.styleFrom(
-//                           backgroundColor:Color(0xFFFFAB40),
-//                           shape: RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(12),
-//                           ),
-//                         ),
-//                         child: state.isLoading
-//                             ? CircularProgressIndicator(color: Colors.white)
-//                             : Text('Login', style: TextStyle(color: Colors.white)),
-//                       ),
-//                     ),
-//
-//                     SizedBox(height: 20),
-//
-//                     /// Sign Up Row
-//                     Row(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Text("Don't Have An Account?", style: TextStyle(color: Colors.black)),
-//                         SizedBox(width: 10),
-//                         ElevatedButton(
-//                           onPressed: () {
-//                             context.read<LoginViewModel>().add(NavigateToSignUpEvent(context: context));
-//                           },
-//                           style: ElevatedButton.styleFrom(
-//                             backgroundColor: Colors.white.withOpacity(0.7),
-//                             foregroundColor: Colors.black,
-//                           ),
-//                           child: Text("Sign Up"),
-//                         ),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
-
-
-
-
-////////////////////////////////
-/////////////////////////////////
-library;
-
-
-
 import 'dart:async';
 import 'dart:math';
 
-import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_event.dart';
-import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_state.dart';
-import 'package:boots_buy/features/auth/presentation/view_model/login_viewmodel/login_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sensors_plus/sensors_plus.dart' as SensorPlus;
+import 'package:sensors_plus/sensors_plus.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../../view_model/login_viewmodel/login_event.dart';
+import '../../view_model/login_viewmodel/login_state.dart';
+import '../../view_model/login_viewmodel/login_viewmodel.dart';
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: FlipLockLoginScreen(),
+  ));
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class FlipLockLoginScreen extends StatefulWidget {
+  const FlipLockLoginScreen({super.key});
 
-  StreamSubscription<SensorPlus.AccelerometerEvent>? _accelSub;
-  static const double shakeThreshold = 2.8; // typical shake threshold
-  bool _canDetectShake = true;
+  @override
+  State<FlipLockLoginScreen> createState() => _FlipLockLoginScreenState();
+}
 
+class _FlipLockLoginScreenState extends State<FlipLockLoginScreen> {
+  bool _showLoginForm = true; // Show form first time
+  bool _showUnlockButton = false;
   bool _showReloadingOverlay = false;
+  final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  StreamSubscription<AccelerometerEvent>? _accelSub;
+  static const double shakeThreshold = 2.8;
+  bool _canDetectShake = true;
 
   @override
   void initState() {
     super.initState();
 
-    _accelSub = SensorPlus.accelerometerEvents.listen((SensorPlus.AccelerometerEvent event) {
+    _accelSub = accelerometerEvents.listen((event) {
       double gX = event.x / 9.8;
       double gY = event.y / 9.8;
       double gZ = event.z / 9.8;
-
       double gForce = sqrt(gX * gX + gY * gY + gZ * gZ);
 
-      // Debug print to console
-      print('gForce: $gForce');
+      // Flip face down to lock
+      if (event.z < -9 && _showLoginForm) {
+        setState(() {
+          _showLoginForm = false;
+          _showUnlockButton = false;
+        });
+      }
 
-      if (gForce > shakeThreshold && _canDetectShake) {
+      // Flip face up to show unlock
+      if (event.z > 9 && !_showLoginForm && !_showUnlockButton) {
+        setState(() {
+          _showUnlockButton = true;
+        });
+      }
+
+      // Shake to clear when form is visible
+      if (_showLoginForm && gForce > shakeThreshold && _canDetectShake) {
         _canDetectShake = false;
         _onShakeDetected();
 
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           _canDetectShake = true;
         });
       }
@@ -235,8 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onShakeDetected() {
-    print('Shake detected!');
-
     setState(() {
       emailController.clear();
       passwordController.clear();
@@ -245,11 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Page reloaded due to shake!")),
+      const SnackBar(content: Text("Form cleared by shaking phone!")),
     );
 
-    // Hide the overlay after 1.5 seconds
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 1500), () {
       if (mounted) {
         setState(() {
           _showReloadingOverlay = false;
@@ -269,172 +104,172 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          BlocBuilder<LoginViewModel, LoginState>(
-            builder: (context, state) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (state.isSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Login Successful")),
-                  );
-                }
-                if (state.errorMessage != null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.errorMessage!),
-                      backgroundColor: Colors.red,
+          if (_showLoginForm)
+            BlocBuilder<LoginViewModel, LoginState>(
+              builder: (context, state) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (state.errorMessage != null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.errorMessage!),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                });
+
+                return Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/img.png'),
+                      fit: BoxFit.fill,
                     ),
-                  );
-                }
-              });
-
-              return Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/img.png'),
-                    fit: BoxFit.fill,
                   ),
-                ),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 60),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 175),
-
-                        /// Email Field
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: TextFormField(
-                            controller: emailController,
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              hintText: "Enter Email",
-                              hintStyle: TextStyle(color: Colors.black),
-                              prefixIcon: Icon(Icons.email, color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 80),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          const SizedBox(height: 150),
+
+                          _buildTextField(
+                            controller: emailController,
+                            hint: "Enter Email",
+                            icon: Icons.email,
                             validator: (val) => val == null || val.isEmpty ? 'Enter Email' : null,
                           ),
-                        ),
 
-                        SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
-                        /// Password Field
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: TextFormField(
+                          _buildTextField(
                             controller: passwordController,
-                            obscureText: true,
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              hintText: "Enter Password",
-                              hintStyle: TextStyle(color: Colors.black),
-                              prefixIcon: Icon(Icons.lock, color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                            ),
+                            hint: "Enter Password",
+                            icon: Icons.lock,
+                            obscure: true,
                             validator: (val) => val == null || val.isEmpty ? 'Enter Password' : null,
                           ),
-                        ),
 
-                        SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
-                        /// Login Button
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: state.isLoading
-                                ? null
-                                : () {
-                              if (_formKey.currentState!.validate()) {
-                                context.read<LoginViewModel>().add(
-                                  LoginUserEvent(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text,
-                                    context: context,
-                                  ),
-                                );
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFFFAB40),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            child: state.isLoading
-                                ? CircularProgressIndicator(color: Colors.white)
-                                : Text('Login', style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-
-                        SizedBox(height: 20),
-
-                        /// Sign Up Row
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Don't Have An Account?", style: TextStyle(color: Colors.black)),
-                            SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                context.read<LoginViewModel>().add(NavigateToSignUpEvent(context: context));
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: state.isLoading
+                                  ? null
+                                  : () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<LoginViewModel>().add(
+                                    LoginUserEvent(
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text,
+                                      context: context,
+                                    ),
+                                  );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white.withOpacity(0.7),
-                                foregroundColor: Colors.black,
+                                backgroundColor: const Color(0xFFFFAB40),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
                               ),
-                              child: Text("Sign Up"),
+                              child: state.isLoading
+                                  ? const CircularProgressIndicator(color: Colors.white)
+                                  : const Text('Login', style: TextStyle(color: Colors.white)),
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+
+                          const SizedBox(height: 20),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Don't Have An Account?",
+                                  style: TextStyle(color: Colors.black)),
+                              const SizedBox(width: 10),
+                              ElevatedButton(
+                                onPressed: () {
+                                  context.read<LoginViewModel>().add(
+                                    NavigateToSignUpEvent(context: context),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white.withOpacity(0.7),
+                                  foregroundColor: Colors.black,
+                                ),
+                                child: const Text("Sign Up"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                );
+              },
+            )
+          else if (_showUnlockButton)
+            Container(
+              color: Colors.deepOrangeAccent,
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _showLoginForm = true;
+                      _showUnlockButton = false;
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: const Text(
+                    'Unlock',
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                  ),
                 ),
-              );
-            },
-          ),
+              ),
+            )
+          else
+            Container(
+              color: Colors.deepOrangeAccent,
+              child: const Center(
+                child: Text(
+                  'Phone Locked\nFlip face up to unlock',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                ),
+              ),
+            ),
 
-          /// Reloading overlay
           if (_showReloadingOverlay)
             Container(
               color: Colors.black54,
               alignment: Alignment.center,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.orangeAccent,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text(
+                child: const Text(
                   "Reloading...",
                   style: TextStyle(
                     color: Colors.white,
@@ -445,6 +280,37 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String hint,
+    required IconData icon,
+    bool obscure = false,
+    String? Function(String?)? validator,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscure,
+        style: const TextStyle(color: Colors.black),
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.black),
+          prefixIcon: Icon(icon, color: Colors.black),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        ),
+        validator: validator,
       ),
     );
   }

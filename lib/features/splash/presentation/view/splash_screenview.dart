@@ -41,7 +41,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             MaterialPageRoute(
               builder: (_) => BlocProvider<LoginViewModel>(
                 create: (_) => serviceLocator<LoginViewModel>(),
-                child: LoginScreen(),
+                child: FlipLockLoginScreen(),
               ),
             ),
           );

@@ -59,6 +59,7 @@ void main() {
   const tPassword = 'password123';
   const tAddress = 'Test Address';
   const tMobileNumber = '9800000000';
+  final tContext = FakeBuildContext();
 
   final tParams = RegisterUserParams(
     email: tEmail.trim(),
@@ -82,7 +83,7 @@ void main() {
       password: tPassword,
       address: tAddress,
       mobilenumber: tMobileNumber,
-      context: FakeBuildContext(),
+      context: tContext,
     )),
     expect: () => [
       SignupState.initial().copyWith(isLoading: true),
@@ -106,7 +107,7 @@ void main() {
       password: tPassword,
       address: tAddress,
       mobilenumber: tMobileNumber,
-      context: FakeBuildContext(),
+      context: tContext,
     )),
     expect: () => [
       SignupState.initial().copyWith(isLoading: true),
@@ -116,4 +117,140 @@ void main() {
       verify(() => mockUserRegisterUsecase.call(tParams)).called(1);
     },
   );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for invalid email',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'Invalid email')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: 'invalid',
+      username: tUsername,
+      password: tPassword,
+      address: tAddress,
+      mobilenumber: tMobileNumber,
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for empty password',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'Enter password')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: tEmail,
+      username: tUsername,
+      password: '',
+      address: tAddress,
+      mobilenumber: tMobileNumber,
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for empty username',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'Enter username')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: tEmail,
+      username: '',
+      password: tPassword,
+      address: tAddress,
+      mobilenumber: tMobileNumber,
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for empty address',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'Enter address')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: tEmail,
+      username: tUsername,
+      password: tPassword,
+      address: '',
+      mobilenumber: tMobileNumber,
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for empty mobile number',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'Enter mobile number')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: tEmail,
+      username: tUsername,
+      password: tPassword,
+      address: tAddress,
+      mobilenumber: '',
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits [loading true, success false] for duplicate user',
+    build: () {
+      when(() => mockUserRegisterUsecase.call(any()))
+          .thenAnswer((_) async => const Left(TestFailure(message: 'User already exists')));
+      return signupViewModel;
+    },
+    act: (bloc) => bloc.add(SignupButtonPressed(
+      email: tEmail,
+      username: tUsername,
+      password: tPassword,
+      address: tAddress,
+      mobilenumber: tMobileNumber,
+      context: tContext,
+    )),
+    expect: () => [
+      SignupState.initial().copyWith(isLoading: true),
+      SignupState.initial().copyWith(isLoading: false, isSuccess: false),
+    ],
+  );
+
+  blocTest<SignupViewModel, SignupState>(
+    'emits initial state on creation',
+    build: () => signupViewModel,
+    expect: () => [],
+    verify: (bloc) {
+      expect(bloc.state, SignupState.initial());
+    },
+  );
+
 }
