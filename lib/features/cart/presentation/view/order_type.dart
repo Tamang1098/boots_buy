@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class OrderTypeDialog extends StatelessWidget {
   final Function(String) onOrderTypeSelected;
 
-  const OrderTypeDialog({Key? key, required this.onOrderTypeSelected})
-    : super(key: key);
+  const OrderTypeDialog({super.key, required this.onOrderTypeSelected});
 
   @override
   Widget build(BuildContext context) {

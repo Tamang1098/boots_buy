@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:boots_buy/features/product/domain/use_case/product_fetch_usecase.dart';
 import 'product_event.dart';
 import 'product_state.dart';
-import 'package:boots_buy/core/error/failure.dart';
 import 'package:boots_buy/features/product/domain/entity/product_entity.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {

@@ -226,24 +226,24 @@ Future<void> _initCartModule() async {
   // Then inject those into CartViewModel's constructor
 }
 print("Registering OrderRepository");
-  serviceLocator.registerLazySingleton<OrderRepository>(
+  void serviceLocator.registerLazySingleton<OrderRepository>(
     () => OrderRepositoryImpl(serviceLocator<OrderRemoteDataSource>()),
   );
 
   // use case
   print("Registering CreateOrderUseCase");
-  serviceLocator.registerFactory<CreateOrderUseCase>(
+  void serviceLocator.registerFactory<CreateOrderUseCase>(
     () => CreateOrderUseCase(serviceLocator<OrderRepository>()),
   );
 
-  serviceLocator.registerFactory<GetUserOrdersUseCase>(
+  void serviceLocator.registerFactory<GetUserOrdersUseCase>(
     () => GetUserOrdersUseCase(serviceLocator<OrderRepository>()),
   );
 
   //bloc
 
   print("Registering OrderViewModel");
-  serviceLocator.registerFactory<OrderViewModel>(
+  void serviceLocator.registerFactory<OrderViewModel>(
     () => OrderViewModel(
       createOrderUseCase: serviceLocator<CreateOrderUseCase>(),
       getUserOrdersUseCase: serviceLocator<GetUserOrdersUseCase>(),

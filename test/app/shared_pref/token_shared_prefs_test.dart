@@ -80,7 +80,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dartz/dartz.dart';
 import 'package:boots_buy/app/shared_pref/token_shared_prefs.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}

@@ -3,8 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:boots_buy/features/auth/data/data_source/user_data_source.dart';
 import 'package:boots_buy/features/auth/domain/entity/user_entity.dart';
-import 'package:dartz/dartz.dart';
-import 'package:boots_buy/core/error/failure.dart';
 
 class MockUserDataSource extends Mock implements IUserDataSource {}
 

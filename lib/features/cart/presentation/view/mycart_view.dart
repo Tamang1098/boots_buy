@@ -14,7 +14,7 @@ import 'package:boots_buy/features/order/presentation/view_model/order_state.dar
 import 'package:boots_buy/features/order/domain/entity/order_entity.dart';
 
 class CartView extends StatelessWidget {
-  const CartView({Key? key}) : super(key: key);
+  const CartView({super.key});
 
   Future<void> _showOrderTypeDialog(
     BuildContext context,
@@ -169,8 +169,8 @@ class CartView extends StatelessWidget {
         }
 
         if (state is OrderSuccess) {
-          print('Order successful: ${state.order?.orderType}');
-          _showSuccessDialog(context, state.order?.orderType ?? 'your');
+          print('Order successful: ${state.order.orderType}');
+          _showSuccessDialog(context, state.order.orderType ?? 'your');
 
           // Clear cart after successful order (add ClearCart event to your cart_event.dart if not exists)
           context.read<CartViewModel>().add(ClearCart());

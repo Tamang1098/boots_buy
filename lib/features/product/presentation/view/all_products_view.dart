@@ -23,7 +23,7 @@ class AllProductsView extends StatelessWidget {
 }
 
 class _AllProductsViewBody extends StatefulWidget {
-  const _AllProductsViewBody({super.key});
+  const _AllProductsViewBody();
 
   @override
   State<_AllProductsViewBody> createState() => _AllProductsViewBodyState();
@@ -139,7 +139,7 @@ class _AllProductsViewBodyState extends State<_AllProductsViewBody> {
 class _ProductCard extends StatelessWidget {
   final ProductEntity product;
 
-  const _ProductCard({required this.product, Key? key}) : super(key: key);
+  const _ProductCard({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
